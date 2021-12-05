@@ -14,6 +14,10 @@ const lista_produtos = {
 
 app.use(express.json()) // for parsing application/json
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
 app.get('/produtos', (req, res) => {
   return res.status(200).json(lista_produtos);
 })
