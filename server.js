@@ -69,9 +69,9 @@ app.put('/produtos/:id', (req, res) => {
     return res.status(404).json({ message: 'id não encontrada' });
   } else {
 
-    const newDescricao = req.body?.descricao;
-    const newValor = Number(req.body?.valor);
-    const newMarca = req.body?.marca;
+    const newDescricao = req.body ? req.body.descricao : "";
+    const newValor = req.body ? Number(req.body.valor) : Number("");
+    const newMarca = req.body ? req.body.marca : "";
 
     const selectedProduct = lista_produtos.produtos.find(function (produto) { return produto.id === id });
 
@@ -101,7 +101,7 @@ app.delete('/produtos/:id', (req, res) => {
 
     lista_produtos.produtos = lista_produtos.produtos.filter(function (produto) { return Number(produto.id) !== id });
 
-    return res.status(200).json({message: 'Produto deletado com sucesso!',produto: deletedProduct})
+    return res.status(200).json({ message: 'Produto deletado com sucesso!', produto: deletedProduct })
 
   }
 
